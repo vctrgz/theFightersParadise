@@ -1,0 +1,52 @@
+@import url(variables.css);
+
+
+body{
+    background-color: var(--color-fondo);
+}
+
+.columna_usuario{
+    background-color: var(--color-primario);
+    height:550px;
+    width: 250px;
+    align-items: center;
+    display: inline-block;
+    margin-top: 140px;
+}
+
+.TituloUsuario{
+    margin-left: 75px;
+}
+
+#foto_usuario{
+    height: 100px;
+    width: 100px;
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.infoUsuario{
+    margin-left: 10px;
+}
+
+.adquiridos{
+    width: 60%;
+    margin-left: 20px;
+    display: inline-block;
+    margin-top: 120px;
+    display: inline-block;
+}
+
+.tituloAdquiridos{
+    border-bottom: solid var(--color-primario);
+    color: var(--color-primario);
+}
+
+.eventos{
+    width: 400px;
+    height: 150px;
+    display: inline-block;
+    background-color: var(--color-logosInput);
+    margin-top: 20px;
+    
+}

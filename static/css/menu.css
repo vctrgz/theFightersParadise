@@ -1,0 +1,45 @@
+@import url(variables.css);
+
+body {
+    width: 100%;
+    margin: 0; 
+    background-color: var(--color-fondo);
+}
+
+.events {
+    width: 100%;
+    height: 30%;
+}
+
+.event {
+    margin: auto; /* Changed to use auto for horizontal centering */
+    width: 27%;
+    height: 22%;
+    border-radius: 25px;
+    text-align: center; /* Center content horizontally */
+}
+
+.event > img {
+    margin: 0; 
+    width: 350px;
+    height: 200px;
+}
+
+.products {
+    width: 100%;
+    height: 30%;
+}
+
+.product {
+    margin: auto; /* Changed to use auto for horizontal centering */
+    width: 27%;
+    height: 22%;
+    border-radius: 25px;
+    text-align: center; /* Center content horizontally */
+}
+
+.product > img {
+    margin: 0;
+    width: 350px;
+    height: 200px;
+}
