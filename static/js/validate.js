@@ -64,41 +64,44 @@ $(".sign-up-form").validate({
     }
     
 })
-$(".userModifier").validate({
-    focusCleanUp: true,
-    rules:{
-        newUsername:{
-            required: true,
-            minlength: 3,
-            maxlength: 12
-        },
-        newPassword:{
-            required: true,
-            minlength: 3,
-            maxlength: 20
 
-        },
-        newEmail:{
-            required: true
-        }
-    },
-    messages:{
-        newUsername:{
-            required: "<br>Campo obligatorio</br>",
-            minlength: "El nombre de usuario debe contener mas de 3 carácteres",
-            maxlength: "El nombre de usuario debe contener menos de 12 carácteres"
-        },
-        newPassword:{
-            required: "<br>Campo obligatorio</br>",
-            minlength: "Minimo 3 carácteres",
-            maxlength: "Maximo 20 carácteres",
-            pattern: "La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial"
-        },
-        newEmail:{
-            required: "<br>Campo obligatorio</br>",
-            pattern: "Direccion de correo electronico invalida"
+$(document).ready(function() {
+    $(".userModifier").validate({
+        focusCleanUp: true,
+        rules:{
+            newUsername:{
+                required: true,
+                minlength: 3,
+                maxlength: 12
+            },
+            newPassword:{
+                required: true,
+                minlength: 3,
+                maxlength: 20
 
-        } 
-    }
-    
-})
+            },
+            newEmail:{
+                required: true
+            }
+        },
+        messages:{
+            newUsername:{
+                required: "<br>Campo obligatorio</br>",
+                minlength: "El nombre de usuario debe contener mas de 3 carácteres",
+                maxlength: "El nombre de usuario debe contener menos de 12 carácteres"
+            },
+            newPassword:{
+                required: "<br>Campo obligatorio</br>",
+                minlength: "Minimo 3 carácteres",
+                maxlength: "Maximo 20 carácteres",
+                pattern: "La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial"
+            },
+            newEmail:{
+                required: "<br>Campo obligatorio</br>",
+                pattern: "Direccion de correo electronico invalida"
+
+            } 
+        },
+        
+    });
+});

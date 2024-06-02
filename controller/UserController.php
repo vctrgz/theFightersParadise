@@ -25,6 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["backToProfile"])) {
         $user->backToProfile();
     }
+    if (isset($_POST["editAjax"])) {
+        echo "hola";
+        $user->editAjax();
+    }
 }
 
 class UserController{
@@ -207,38 +211,43 @@ class UserController{
     public function edit() : void {
         header("Location: /TheFightersParadise/views/updateUser.php");
     }
+
+    public function editAjax() : void {
+        header("Location: /TheFightersParadise/views/updateUserAjax.php");
+    }
     public function update() : void {
         $newUsername = $_POST["newUsername"];
         $newEmail = $_POST["newEmail"];
         $newPassword = $_POST["newPassword"];
         $userId = $_POST["userId"];
+        $newCity = $_POST["newCity"];
 
         if (empty($newUsername) || empty($newPassword) || empty($newEmail)){
             echo "Please fill all the fields";
         } else {
             $statement = $this->conn->prepare("UPDATE users 
-            SET username = :newUsername, email = :newEmail, password = :newPassword 
+            SET username = :newUsername, email = :newEmail, password = :newPassword,  ciudad = :newCity 
             WHERE id = :id");
             $statement->bindParam(":newUsername", $newUsername);
             $statement->bindParam(":newEmail", $newEmail);
             $statement->bindParam(":newPassword", $newPassword);
+            $statement->bindParam(":newCity", $newCity);
             $statement->bindParam(":id", $userId);
             $statement->execute();
 
             if ($statement->execute()) {
-                // echo "Modificado con exito";
-                echo json_encode(["message" => "Usuario actualizado correctamente"]);
+            echo "Modificado con exito";
 
             $statement = $this->conn->prepare("SELECT * FROM users WHERE id = :id");
             $statement->bindParam(":id", $userId);
             $statement->execute();
             $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+            header("Location: /TheFightersParadise/views/perfil.php");
             $_SESSION["user"] = $user;
             $_SESSION['logged'] = true;
             } else {
-                // echo "No se ha modificado correctamente";
-                echo json_encode(["message" => "Error al actualizar el evento"]);                // Use exit after header to ensure script termination
+                echo "No se ha modificado correctamente";
             }
             
             unset($this->conn);

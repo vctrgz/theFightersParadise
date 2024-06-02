@@ -20,15 +20,15 @@ if (isset($_SESSION['logged']) && $_SESSION["logged"] === false) {
     <script src="../static/js/jQueryLibrary.js"></script>
     <script src="../static/js/dist/jquery.validate.min.js"></script>
     <script src="../static/js/dist/additional-methods.min.js"></script>
-    <script src="../static/js/validate.js" defer></script>
+    <script src="../static/js/checkmessages.js" defer></script>
 </head>
 <body>
     <div class="formBody">
-        <form action="/TheFightersParadise/controller/UserController.php" method="post" class="userModifier">
+        <form action="/TheFightersParadise/controller/controllerUserAjax.php" method="post" class="userModifier">
             <div id="message"></div>
             <img id="foto_usuario" src="<?= $_SESSION["user"]["userImage"] ?>" alt="Foto Usuario">
             <h2>
-                Modificar usuario
+                Modificar usuario con AJAX
             </h2>
     
             <input type="hidden" name="userId" value="<?= $_SESSION["user"]['id']; ?>" id="userId">
@@ -40,10 +40,9 @@ if (isset($_SESSION['logged']) && $_SESSION["logged"] === false) {
             <input type="text" name="newCity" value="<?= $_SESSION["user"]["ciudad"]?>" id="newCity"><br>
             Contraseña: 
             <input type="password" name="newPassword" value="<?= $_SESSION["user"]["password"]?>" id="newPassword"><br>
-            
-            <input type="submit" class="btn" value="Aceptar" name="updateUser" id="updateUser"/>
-            <input type="submit" class="btn" value="Volver a Perfil" name="backToProfile">
+            <input type="submit" class="btn" value="Volver a Perfil" name="backToProfile" id="backToProfile">
         </form>
+        <button id="updateAjax">updateAjax</button>
     </div>
 </body>
 </html>

@@ -28,7 +28,7 @@ if (isset($_SESSION['logged']) && $_SESSION["logged"] === false) {
             <img id="foto_usuario" src="<?= $_SESSION["user"]["userImage"] ?>" alt="Foto Usuario">
             <h3 class="TituloUsuario">Usuario</h3><br>
             <div class="infoUsuario">
-                <a><b>Información del Usuario:</b> <?= $_SESSION['user']['username']?><br>
+                <a><b>Información del Usuario:</b> <br><?= $_SESSION['user']['username']?><br>
                 <?= $_SESSION['user']['email']?> <br> <?= $_SESSION['user']['ciudad']?><br>
                 <b>Tipo de usuario:</b><br>
                 <?php if ($_SESSION["user"]["promotor"]) : ?>
@@ -41,6 +41,7 @@ if (isset($_SESSION['logged']) && $_SESSION["logged"] === false) {
         <div class="modifiers">
             <form action="/TheFightersParadise/controller/UserController.php" method="post">
                 <input type="submit" value="Modificar información" name="editUser" style="border: none; background-color: transparent;"><br> 
+                <input type="submit" value="Modificar información AJAX" name="editAjax" style="border: none; background-color: transparent;"><br> 
                 <input type="submit" value="Cerrar Sesión" name="logout" style="border: none; background-color: transparent;"/>
             </form>
         </div>

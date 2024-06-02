@@ -6,7 +6,7 @@ body {
     margin: 0; /* Elimina márgenes predeterminados del body */
 }
 
-.userModifier {
+.formBody {
     display: flex;
     flex-direction: column; /* Coloca los elementos dentro del formulario en columna */
     align-items: center; /* Centra los elementos del formulario horizontalmente */
@@ -15,6 +15,13 @@ body {
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.userModifier {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos dentro del formulario en columna */
+    align-items: center; 
+    padding: 20px;
 }
 
 #foto_usuario {
