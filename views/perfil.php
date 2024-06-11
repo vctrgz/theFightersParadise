@@ -3,7 +3,6 @@ session_start();
 
 var_dump($_SESSION["user"]);
 
-
 if (isset($_SESSION['logged']) && $_SESSION["logged"] === false) {
     header("Location /TheFightersParadise/views/index.php");
 }
