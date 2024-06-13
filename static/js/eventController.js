@@ -1,3 +1,22 @@
+// propuestas para la prueba de mañana: arreglar perfil.php, continuar con los eventos
+$(document).ready(function mostrarEventos(){
+const sliderEvents = $(".sliderEvents");
+
+$.getJSON('../controller/eventController.php').done(function (event) {
+        console.log(event);
+        $.each(event, function(index, evento){
+            const eventoImagen = $('<figure>');
+            eventoImagen.addClass('event');
+            const imagen = $('<img>').attr('src', "../static/images/event.png");
+            //explicar a jose tecla backtick
+            const ubicacion = $('<figcaption>').text(`Ubicación: ${evento.ubicacion}`);
+            eventoImagen.append(imagen).append(ubicacion);
+            sliderEvents.slick('slickAdd', eventoImagen);
+
+        });
+    })
+})
+
 $("#crearEvento").click(function ajax(){
     let nombre=$("#nombreCrear").val();
     let ubicacion=$("#ubicacionCrear").val();
@@ -110,7 +129,7 @@ $("#eliminarEvento").click(function ajax(){
     let nombre=$("#nombreBuscarEliminar").val();
     $.ajax({
         type:"POST",
-        url: "TheFightersParadise/controller/EventController.php",
+        url: "../controller/EventController.php",
         dataType:"text",
         data: {
             // comprobar que los valores no sean nulos

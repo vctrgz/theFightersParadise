@@ -9,6 +9,7 @@ body {
 .events {
     width: 100%;
     height: 30%;
+    margin-bottom: 10%;
 }
 
 .event {
@@ -42,4 +43,12 @@ body {
     margin: 0;
     width: 350px;
     height: 200px;
+}
+
+.sliderEvents{
+    margin-top: 3%;
+}
+
+.sliderProducts{
+    margin-top: 3%;
 }

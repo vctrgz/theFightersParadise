@@ -1,10 +1,15 @@
 <?php
 session_start();
 
-$event = new eventController();
 
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $event = new eventController();
+    $event->mostrarEventos();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $event = new eventController();
     if (isset($_POST['Crear'])) {
         $event->createEvent();
     }
@@ -31,9 +36,20 @@ class eventController{
             $this->conn = new PDO($dsn, $user, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo json_encode(["message" => "Connection error: " . $e->getMessage()]);
+            die("Connection error: " . $e->getMessage());
         }
+        //$this->mostrarEventos();
     }
+    public function mostrarEventos() : void{
+        $statement = $this->conn->prepare("SELECT ubicacion
+        FROM events
+        WHERE fecha >= CURDATE()
+        ORDER BY fecha ASC");
+        $statement->execute();
+        $event = $statement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($event);
+    }
+
     public function createEvent() : void{
         $nombre = $_POST['nombre'];
         $ubicacion = $_POST['ubicacion'];

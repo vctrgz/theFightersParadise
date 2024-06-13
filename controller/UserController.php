@@ -71,7 +71,11 @@ class UserController{
         }
 
         $username = $_POST["username"];
-        $password = $_POST["password"];
+        
+        echo $username;
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        
+        echo $password;
         $email = $_POST["email"];
         $city = $_POST["city"];
 
@@ -80,7 +84,6 @@ class UserController{
         } else {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error'] = "Invalid email format";
-
                 header("Location: /TheFightersParadise/views/login.php");
                 exit();
             }
@@ -96,7 +99,6 @@ class UserController{
             } else {
                 $statement = $this->conn->prepare("INSERT INTO users (username, email, password, ciudad, promotor) 
                 VALUES (:username, :email, :password, :city, :promotor)");
-
                 $statement->bindParam(":username", $username);
                 $statement->bindParam(":email", $email);
                 $statement->bindParam(":password", $password);
@@ -142,37 +144,48 @@ class UserController{
     }
 
     public function login() : void{
-
         $username = $_POST["username"];
         $password = $_POST["password"];
-
+        $statement = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
+        $statement->bindParam(":username", $username);
+        $statement->execute();
+        $user= $statement->fetch(PDO::FETCH_ASSOC);
+        $hash = $user['password'];
+        var_dump($hash);
+        var_dump($password);
+        $passwordHash = password_verify($password, $hash);
+        var_dump($passwordHash);
         if (empty($_POST["username"]) || empty($_POST["password"])){
             echo "Please fill all the fields";
         } else {
-            $statement = $this->conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1");
-            $statement->bindParam(":username", $username);
-            $statement->bindParam(":password", $password);
-            $statement->execute();
-
-            if ($statement->rowCount() == 0) {
-                echo "Invalid Credentials";
-                header("Location: /TheFightersParadise/views/login.php");
-                $_SESSION['logged'] = false;
-            } else {
-                $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-                // if (!password_verify($_POST["password"], $user["password"])) {
-                //     echo "Invalid Credentials";
-                //     $_SESSION['logged'] = false;
-                //     header("Location: /TheFightersParadise/views/login.php");
-                //     unset($this->conn);
-                // } else {
-                    $_SESSION["user"] = $user;
-                    $_SESSION['logged'] = true;
-                    header("Location: /TheFightersParadise/views/perfil.php");
-                    unset($this->conn);
-                    exit();
-                // }
+            if ($passwordHash == true) {
+               /* $statement = $this->conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1");
+                $statement->bindParam(":username", $username);
+                $statement->bindParam(":password", $hash);
+                $statement->execute();
+    */
+                if ($statement->rowCount() == 0) {
+                    echo "Invalid Credentials";
+                    header("Location: /TheFightersParadise/views/login.php");
+                    $_SESSION['logged'] = false;
+                } else {
+                    //$user = $statement->fetch(PDO::FETCH_ASSOC);
+    
+                    // if (!password_verify($_POST["password"], $user["password"])) {
+                    //     echo "Invalid Credentials";
+                    //     $_SESSION['logged'] = false;
+                    //     header("Location: /TheFightersParadise/views/login.php");
+                    //     unset($this->conn);
+                    // } else {
+                        $_SESSION["user"] = $user;
+                        $_SESSION['logged'] = true;
+                        header("Location: /TheFightersParadise/views/perfil.php");
+                        unset($this->conn);
+                        exit();
+                    // }
+                }
+            }else {
+                echo json_encode(["message" => "Contraseña incorrecta"]);
             }
         }
         

@@ -20,6 +20,7 @@ session_start();
     <script src="../static/js/eventController.js" defer></script>
     <script src="../static/js/eventForm.js"></script>
     
+    
 </head>
 <body>
 
@@ -43,25 +44,25 @@ session_start();
                         <label>
                             Nombre: 
                         </label>
-                        <input type="text" name="nombre" id="nombreCrear">
+                        <input type="text" name="nombre" id="nombreCrear" required>
                     </div>
                     <div class="pregunta2">
                         <label>
                         <br> Ubicacion:
                         </label>
-                        <input type="text" name="ubicacion" id="ubicacionCrear">
+                        <input type="text" name="ubicacion" id="ubicacionCrear" required>
                     </div>
                     <div class="pregunta3">
                         <label>
                             <br>Fecha: 
                         </label>
-                        <input type="date" name="fecha" id="fechaCrear">
+                        <input type="date" name="fecha" id="fechaCrear" required>
                     </div>
                     <div class="pregunta4">
                         <label>
                             <br>Informacion: 
                         </label>
-                        <input type="text" name="informacion" id="informacionCrear">
+                        <input type="text" name="informacion" id="informacionCrear" required>
                     </div>
                 </div>
 
@@ -70,31 +71,31 @@ session_start();
                         <label>
                             Nombre del evento que desea actualizar: 
                         </label>
-                        <input type="text" name="nombre" id="nombreActualizar">
+                        <input type="text" name="nombre" id="nombreActualizar" required>
                     </div>
                     <div class="pregunta5">
                         <label>
                             <br> Nuevo Nombre:
                         </label>
-                        <input type="text" name="nombreNuevo" id="nombreNuevo">
+                        <input type="text" name="nombreNuevo" id="nombreNuevo" required>
                     </div>
                     <div class="pregunta2">
                         <label>
                         <br> Ubicacion:
                         </label>
-                        <input type="text" name="ubicacion" id="ubicacionActualizar">
+                        <input type="text" name="ubicacion" id="ubicacionActualizar" required>
                     </div>
                     <div class="pregunta3">
                         <label>
                             <br>Fecha: 
                         </label>
-                        <input type="date" name="fecha" id="fechaActualizar">
+                        <input type="date" name="fecha" id="fechaActualizar" required>
                     </div>
                     <div class="pregunta4">
                         <label>
                             <br>Informacion: 
                         </label>
-                        <input type="text" name="informacion" id="informacionActualizar">
+                        <input type="text" name="informacion" id="informacionActualizar" required>
                     </div>
                 </div>
 
@@ -103,7 +104,7 @@ session_start();
                         <label>
                             Nombre: 
                         </label>
-                        <input type="text" name="nombre" id="nombreBuscarEliminar">
+                        <input type="text" name="nombre" id="nombreBuscarEliminar" required>
                     </div>
                 </div>
 
@@ -122,35 +123,13 @@ session_start();
 
     <?php else : ?>
 
-        <section class="events">
+    <section class="events">
         <h1>Eventos:</h1>
         <div class="sliderEvents">
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-            <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
-            <div class="event">
-                <img src="../static/images/event.png" alt="">
-            </div>
+           
         </div>
     </section>
+    
     <section class="events">
         <h1>Novedades de nuestras marcas:</h1>
         <div class="sliderProducts">
